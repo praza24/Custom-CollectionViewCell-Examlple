@@ -1,6 +1,6 @@
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -12,23 +12,27 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         //Registering the custom CollectionViewCell
         let nibCell = UINib(nibName: "FootballCell", bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: "FootballCell")
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 11
+        return 100
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FootballCell", for: indexPath) as! FootballCell
         
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FootballCell", for: indexPath) as! FootballCell
         
         cell.layer.borderWidth = 1
         
-        cell.footballLabel.text = "Hello World"
+        cell.footballLabel.text = "Liverpool FC"
         return cell
     }
     
+    //MARK: Setting the cell's insets
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
     
 }
 
